@@ -4,14 +4,17 @@ jobs:
   build:
     working_directory: ~/circleci-python
     docker:
-      - image: "circleci/python:3.9-buster-node-browsers-legacy"
+      - image: "circleci/python:3.9.6"
     steps:
       - checkout
-      - run: python main.py
+      - run:
+          name: Run main.py
+          command: python main.py
+
   test:
     working_directory: ~/circleci-python
     docker:
-      - image: "circleci/python:3.9-buster-node-browsers-legacy"
+      - image: "circleci/python:3.9.6"
     steps:
       - checkout
       - run:
