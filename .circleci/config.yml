@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
 
-      # Configure SSH key for GitHub access 
+      # Configure SSH key for GitHub access
       - run:
           name: Configure SSH Key
           command: |
