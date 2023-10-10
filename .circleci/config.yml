@@ -6,6 +6,16 @@ jobs:
       - image: "circleci/python:3.9.6"
     steps:
       - checkout
+
+      # Configure SSH key for GitHub access
+      - run:
+          name: Configure SSH Key
+          command: |
+            mkdir -p ~/.ssh
+            echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan github.com >> ~/.ssh/known_hosts
+
       - run:
           name: Run main.py
           command: python main.py
@@ -26,5 +36,4 @@ workflows:
     jobs:
       - build
       - test:
-          requires:
-            - build
+          requires: [build]
